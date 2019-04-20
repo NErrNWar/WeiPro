@@ -1,9 +1,12 @@
 <!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 微信授权(获得微信头像) </button>
+<view class="mainpage">
+  <view class="photoview">
+    <button class="takephoto" bindtap="jumpphoto">
+      <image class="photoimg" src="/images/camera.png" />
+      <text class="phototxt">拍照</text>
+    </button>
   </view>
   <view>
-    <button bindtap="jumpphoto">拍照</button>
+    <text>详情</text>
   </view>
 </view>
