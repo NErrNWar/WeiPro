@@ -1,0 +1,4 @@
+<view class="container">
+    <camera device-position="back" flash="off" binderror="error" class="camera"></camera>
+    <button type="primary" bindtap="takePhoto">photo</button>
+</view>

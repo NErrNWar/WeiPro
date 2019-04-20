@@ -1,0 +1,13 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/cropper-image/cropper-image",
+    "pages/take-photo/take-photo"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Check Homework",
+    "navigationBarTextStyle":"black"
+  }
+}

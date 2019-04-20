@@ -1,0 +1,3 @@
+<view class="container">
+    <image-cropper id="image-cropper" src="{{src}}" limit_move="{{true}}" disable_rotate="{{true}}" width="{{witdth}}" height="{{height}}" imgSrc="{{src}}" bindload="cropperload" bindimageload="loadimage" bindtapcut="clickcut"></image-cropper>
+</view>
