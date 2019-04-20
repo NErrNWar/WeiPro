@@ -7,30 +7,6 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    subMsg:""
-  },
-  submitMsg:function(){
-    var that=this
-    wx.request({
-      url:"https://www.52css.top/gets",
-      success:function(res){
-        console.log(res.data)
-        that.setData({
-          subMsg:res.data["name"]
-        })
-      },
-      fail:function(res){
-        this.setData({
-          subMsg:"fail"
-        })
-      }
-    })
-  },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
   },
   onLoad: function () {
     if (app.globalData.userInfo) {
@@ -73,6 +49,9 @@ Page({
       url: '../take-photo/take-photo',
       success: (result) => {
         console.log(result)
+      },
+      fail:(e)=>{
+        console.log("jump to photo err",e)
       }
     });
       
