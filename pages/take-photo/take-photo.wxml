@@ -1,4 +1,13 @@
-<view class="container">
-    <camera device-position="back" flash="off" binderror="error" class="camera"></camera>
-    <button type="primary" bindtap="takePhoto">photo</button>
+<view class="photopage">
+    <camera device-position="back" flash="{{flash_flag}}" binderror="error" class="camera">
+        <button class="light_btn" bindtap="flash_btn">
+            <cover-image class="light_flash" src="{{flash_path}}"></cover-image>
+        </button>
+          
+        <cover-view class="bottom_tab">
+            <button class="choose_img">相册</button>
+            <cover-image bindtap="takePhoto" class="take_btn" src="http://www.52css.top:8000/images/take.png" />
+            <button class="close_photo">✖</button>
+        </cover-view>
+    </camera>
 </view>

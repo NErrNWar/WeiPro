@@ -15,8 +15,8 @@
   display: flex;
   flex-direction: column;
   background-color: white;
-  height: 7rem;
-  width: 7rem;
+  height: 12rem;
+  width: 12rem;
   border-radius: 50%;
   align-content: center;
   justify-content: center;
@@ -24,12 +24,13 @@
 }
 .photoimg{
   display:flex;
-  height: 4rem;
-  width: 4rem;
+  height: 7rem;
+  width: 7rem;
   color:#5e91fd;
   background-image: url("http://www.52css.top:8000/images/Camera.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
+  padding: 20px;
 }
 .takephoto{
   background-color: transparent;
@@ -44,4 +45,5 @@
 }
 .phototxt{
   font-weight: 600;
+  display: block;
 }
