@@ -2,7 +2,7 @@
 <view class="mainpage">
   <view class="photoview">
     <button class="takephoto" bindtap="jumpphoto">
-      <image class="photoimg" src="/images/camera.png" />
+      <image class="photoimg"/>
       <text class="phototxt">拍照</text>
     </button>
   </view>

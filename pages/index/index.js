@@ -35,7 +35,7 @@ Page({
     })
   },
   jumpphoto: function(){
-    wx.redirectTo({
+    wx.navigateTo({
       url: '../take-photo/take-photo',
       success: (result) => {
         console.log(result)
