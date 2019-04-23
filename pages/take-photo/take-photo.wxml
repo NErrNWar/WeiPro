@@ -1,13 +1,13 @@
 <view class="photopage">
     <camera device-position="back" flash="{{flash_flag}}" binderror="error" class="camera">
-        <button class="light_btn" bindtap="flash_btn">
+        <button class="light_btn" bindtap="flashBtn">
             <cover-image class="light_flash" src="{{flash_path}}"></cover-image>
         </button>
           
         <cover-view class="bottom_tab">
-            <button class="choose_img">相册</button>
+            <button class="choose_img" bindtap="chooseImg">相册</button>
             <cover-image bindtap="takePhoto" class="take_btn" src="http://www.52css.top:8000/images/take.png" />
-            <button class="close_photo">✖</button>
+            <button class="close_photo" bindtap="takeBack">✖</button>
         </cover-view>
     </camera>
 </view>

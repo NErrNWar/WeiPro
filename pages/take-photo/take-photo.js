@@ -5,7 +5,7 @@ Page({
         flash_path:"http://www.52css.top:8000/images/light_off.png",
     },
     takePhoto:function(){
-        var ctx = wx.createCameraContext(this);
+        let ctx = wx.createCameraContext(this);
         ctx.takePhoto({
             quality: 'high',
             success: (res)=>{
@@ -19,7 +19,7 @@ Page({
             }
         })
     },
-    flash_btn:function(){
+    flashBtn:function(){
         if (this.data.flash_flag=="on"){
             this.setData({
                 flash_flag:"off",
@@ -36,6 +36,33 @@ Page({
             console.log(this.data.flash_flag)
             console.log(this.data.flash_path)
         }
+    },
+    chooseImg:function(){
+        let self=this;
+        wx.chooseImage({
+            count: 1,
+            sizeType: ['original', 'compressed'],
+            sourceType: ['album'],
+            success: (result) => {
+                console.log(result.tempFilePaths)   
+                let src= result.tempFilePaths[0]
+                wx.redirectTo({
+                    url: '../cropper-image/cropper-image?imgSrc='+src,
+                    success: (result) => {
+                        console.log("redirect success")
+                    }
+                });
+                  
+            }
+        });
+    },
+    takeBack:function(){
+        wx.redirectTo({
+            url: '../index/index',
+            success: (result) => {
+                console.log("back to index")
+            }
+        });   
     }
 });
   
