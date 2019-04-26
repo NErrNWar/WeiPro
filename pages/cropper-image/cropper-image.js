@@ -3,8 +3,7 @@
  */
 const device=wx.getSystemInfoSync();
 let SCREEN_WIDTH = device.windowWidth
-let SCREEN_HEIGHT = Math.ceil(device.windowHeight * 0.9)
-console.log("size",{"width":SCREEN_WIDTH,"height":SCREEN_HEIGHT})
+let SCREEN_HEIGHT = Math.ceil(device.windowHeight * 0.85)
 let PAGE_X, // 手按下的x位置
   PAGE_Y, // 手按下y的位置
   PR = wx.getSystemInfoSync().pixelRatio, // dpi
@@ -62,10 +61,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      let imgPath=options.imgSrc
-      this.setData({
-          imageSrc:imgPath
-      })
+    let img=options.imgSrc
+    this.setData({
+      imageSrc:img
+    })
   },
 
   /**
@@ -107,19 +106,34 @@ Page({
       success: function success(res) {
         DRAW_IMAGE_W = IMG_REAL_W = res.width
         IMG_REAL_H = res.height
-        IMG_RATIO = IMG_REAL_W / IMG_REAL_H
-        let minRange = IMG_REAL_W > IMG_REAL_H ? IMG_REAL_W : IMG_REAL_H
-        console.log("image size",{"width":res.width,"height":res.height})
-        console.log("image ratio",IMG_RATIO)
-        INIT_DRAG_POSITION = minRange > INIT_DRAG_POSITION ? INIT_DRAG_POSITION : minRange
+        IMG_RATIO = IMG_REAL_H / IMG_REAL_W
+        // let minRange = IMG_REAL_W > IMG_REAL_H ? IMG_REAL_W : IMG_REAL_H
+        // INIT_DRAG_POSITION = minRange > INIT_DRAG_POSITION ? INIT_DRAG_POSITION : minRange
         // 根据图片的宽高显示不同的效果   保证图片可以正常显示
+        let cW=Math.ceil(SCREEN_WIDTH * 0.9)
+        _this.setData({
+          cropperW: cW,
+          cropperH: Math.ceil(cW * IMG_RATIO),
+
+          cropperL: Math.ceil((SCREEN_WIDTH - cW) / 2),
+          cropperT: 0,
+          cutL: Math.ceil(cW * 0.1 / 2),
+          cutT: Math.ceil((cW * IMG_RATIO - cW * 0.5) / 2),
+          cutR: Math.ceil(cW * 0.1 / 2),
+          cutB: Math.ceil((cW * IMG_RATIO - cW * 0.5) / 2),
+          // 图片缩放值
+          scaleP: IMG_REAL_W / SCREEN_WIDTH,
+          qualityWidth: DRAW_IMAGE_W,
+          innerAspectRadio: IMG_RATIO
+        })
+        /*
         if (IMG_RATIO >= 1) {
           _this.setData({
             cropperW: SCREEN_WIDTH,
-            cropperH: SCREEN_HEIGHT ,
+            cropperH: SCREEN_WIDTH / IMG_RATIO,
             // 初始化left right
-            cropperL: 0,
-            cropperT: 0,
+            cropperL: Math.ceil((SCREEN_WIDTH - SCREEN_WIDTH) / 2),
+            cropperT: Math.ceil((SCREEN_WIDTH - SCREEN_WIDTH / IMG_RATIO) / 2),
             cutL: Math.ceil((SCREEN_WIDTH - SCREEN_WIDTH + INIT_DRAG_POSITION) / 2),
             cutT: Math.ceil((SCREEN_WIDTH / IMG_RATIO - (SCREEN_WIDTH / IMG_RATIO - INIT_DRAG_POSITION)) / 2),
             cutR: Math.ceil((SCREEN_WIDTH - SCREEN_WIDTH + INIT_DRAG_POSITION) / 2),
@@ -131,15 +145,15 @@ Page({
           })
         } else {
           _this.setData({
-            cropperW: SCREEN_WIDTH ,
-            cropperH: SCREEN_HEIGHT ,
+            cropperW: SCREEN_WIDTH * IMG_RATIO,
+            cropperH: SCREEN_WIDTH,
             // 初始化left right
-            cropperL: 0,
-            cropperT: 0,
+            cropperL: Math.ceil((SCREEN_WIDTH - SCREEN_WIDTH * IMG_RATIO) / 2),
+            cropperT: Math.ceil((SCREEN_WIDTH - SCREEN_WIDTH) / 2),
 
             cutL: Math.ceil((SCREEN_WIDTH * IMG_RATIO - (SCREEN_WIDTH * IMG_RATIO)) / 2),
-            cutT: Math.ceil((SCREEN_HEIGHT - INIT_DRAG_POSITION) / 2),
-            cutB: Math.ceil((SCREEN_HEIGHT - INIT_DRAG_POSITION) / 2),
+            cutT: Math.ceil((SCREEN_WIDTH - INIT_DRAG_POSITION) / 2),
+            cutB: Math.ceil((SCREEN_WIDTH - INIT_DRAG_POSITION) / 2),
             cutR: Math.ceil((SCREEN_WIDTH * IMG_RATIO - (SCREEN_WIDTH * IMG_RATIO)) / 2),
             // 图片缩放值
             scaleP: IMG_REAL_W / SCREEN_WIDTH,
@@ -147,6 +161,7 @@ Page({
             innerAspectRadio: IMG_RATIO
           })
         }
+        */
         _this.setData({
           isShowImg: true
         })
@@ -240,7 +255,7 @@ Page({
         destHeight: canvasH,
         quality: 0.5,
         canvasId: 'myCanvas',
-        success: function (res) {
+        success: function (res) {  
           wx.hideLoading()
           // 成功获得地址的地方
           wx.previewImage({
