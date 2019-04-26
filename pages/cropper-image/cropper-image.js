@@ -29,7 +29,7 @@ Page({
    */
   data: {
     // 之后可以动态替换
-    imageSrc: '../../images/test2.jpg',
+    imageSrc: '',
 
     // 是否显示图片(在图片加载完成之后设置为true)
     isShowImg: false,
@@ -62,6 +62,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+      let imgPath=options.imgSrc
+      this.setData({
+          imageSrc:imgPath
+      })
   },
 
   /**
