@@ -27,7 +27,6 @@ Page({
     }
   },
   getUserInfo: function(e) {
-    console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
@@ -38,7 +37,7 @@ Page({
     wx.navigateTo({
       url: '../take-photo/take-photo',
       success: (result) => {
-        console.log(result)
+        console.log("navigate to take-photo success")
       },
       fail:(e)=>{
         console.log("jump to photo err",e)

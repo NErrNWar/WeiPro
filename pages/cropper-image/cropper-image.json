@@ -1,7 +1,4 @@
 {
-  "usingComponents": {
-      "image-cropper":"../image-cropper/image-cropper"
-  },
-  "navigationBarTitleText":"剪切",
-  "disableScroll":true
+  "enablePullDownRefresh": false,
+  "navigationBarTitleText":"剪切"
 }

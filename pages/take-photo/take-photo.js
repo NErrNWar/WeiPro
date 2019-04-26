@@ -13,7 +13,10 @@ Page({
                 wx.redirectTo({
                     url: '../cropper-image/cropper-image?imgSrc='+src,
                     success: (result) => {
-                        console.log(result)
+                        console.log("redirect to cropper-image success")
+                    },
+                    fail:(e)=>{
+                        console.log("redirecc to cropper-image error",e)
                     }
                 });
             }
@@ -25,16 +28,12 @@ Page({
                 flash_flag:"off",
                 flash_path:"http://www.52css.top:8000/images/light_off.png"
             })
-            console.log(this.data.flash_flag)
-            console.log(this.data.flash_path)
         }
         else{
             this.setData({
                 flash_flag:"on",
                 flash_path:"http://www.52css.top:8000/images/light_on.png"
             })
-            console.log(this.data.flash_flag)
-            console.log(this.data.flash_path)
         }
     },
     chooseImg:function(){
@@ -44,7 +43,7 @@ Page({
             sizeType: ['original', 'compressed'],
             sourceType: ['album'],
             success: (result) => {
-                console.log(result.tempFilePaths)   
+                console.log("chooseImage",result.tempFilePaths)   
                 let src= result.tempFilePaths[0]
                 wx.redirectTo({
                     url: '../cropper-image/cropper-image?imgSrc='+src,

@@ -3,7 +3,7 @@ App({
   onLaunch: function () {
     // 登录
     wx.login({
-      timeout:1000,
+      timeout:10000,
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         console.log("login success",res.code)
