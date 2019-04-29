@@ -42,7 +42,31 @@ Page({
       fail:(e)=>{
         console.log("jump to photo err",e)
       }
-    });
-      
-  }
+    }); 
+  },
+  onShareAppMessage: function () {
+    let that =this;
+      return {
+        title: '搜题利器', // 转发后 所显示的title
+        path: '/pages/index/index', // 相对的路径
+        success: (res)=>{    // 成功后要做的事情
+          console.log(res.shareTickets[0])     
+          wx.getShareInfo({
+            shareTicket: res.shareTickets[0],
+            success: (res)=> { 
+              that.setData({
+                isShow:true
+              }) 
+              console.log(that.setData.isShow)
+             },
+            fail: function (res) { console.log(res) },
+            complete: function (res) { console.log(res) }
+          })
+        },
+        fail: function (res) {
+          // 分享失败
+          console.log(res)
+        }
+      }
+    }
 })
