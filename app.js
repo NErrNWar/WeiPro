@@ -1,12 +1,36 @@
 //app.js
 App({
   onLaunch: function () {
+    let self=this
     // 登录
     wx.login({
       timeout:10000,
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         console.log("login success",res.code)
+        wx.request({
+          url: self.globalData.host+"/userinfo",
+          data: {"code":res.code},
+          header: {'content-type':'application/x-www-form-urlencoded'},
+          method: 'POST',
+          responseType: 'text',
+          success: (result) => {
+            console.log("request user code success")
+            let data=result.data
+            if (data.code!=0){
+              console.log(data.code,data.message)
+            }
+            else{
+              let oid=data.context.openid
+              console.log("openid",oid)
+              self.globalData.openid=oid
+            }
+          },
+          fail: () => {
+            console.log("request user coe fail")
+          },
+        });
+          
       },
       fail: e=>{
         console.log("login fail",e)
@@ -34,6 +58,8 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    host: "http://localhost:8888",
+    openid:0
   }
 })

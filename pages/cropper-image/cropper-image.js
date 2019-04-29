@@ -1,7 +1,9 @@
 /**
  * wx-cropper 1.1
  */
+const app= getApp();
 const device=wx.getSystemInfoSync();
+console.log(device)
 let SCREEN_WIDTH = device.windowWidth
 let SCREEN_HEIGHT = Math.ceil(device.windowHeight * 0.85)
 let PAGE_X, // 手按下的x位置
@@ -64,7 +66,7 @@ Page({
     let img=options.imgSrc
     this.setData({
       imageSrc:img
-    })
+    })     
   },
 
   /**
@@ -104,13 +106,14 @@ Page({
     wx.getImageInfo({
       src: _this.data.imageSrc,
       success: function success(res) {
+        console.log("size",{"width":res.width,"height":res.height})
         DRAW_IMAGE_W = IMG_REAL_W = res.width
         IMG_REAL_H = res.height
         IMG_RATIO = IMG_REAL_H / IMG_REAL_W
         // let minRange = IMG_REAL_W > IMG_REAL_H ? IMG_REAL_W : IMG_REAL_H
         // INIT_DRAG_POSITION = minRange > INIT_DRAG_POSITION ? INIT_DRAG_POSITION : minRange
         // 根据图片的宽高显示不同的效果   保证图片可以正常显示
-        let cW=Math.ceil(SCREEN_WIDTH * 0.9)
+        let cW=Math.ceil(SCREEN_WIDTH * 0.85)
         _this.setData({
           cropperW: cW,
           cropperH: Math.ceil(cW * IMG_RATIO),
@@ -236,8 +239,33 @@ Page({
     wx.showLoading({
       title: '图片生成中...',
     })
+    var canvasW = Math.ceil(((_this.data.cropperW - _this.data.cutL - _this.data.cutR) / _this.data.cropperW) * IMG_REAL_W)
+    var canvasH = Math.ceil(((_this.data.cropperH - _this.data.cutT - _this.data.cutB) / _this.data.cropperH) * IMG_REAL_H)
+    var canvasL = Math.ceil((_this.data.cutL / _this.data.cropperW) * IMG_REAL_W)
+    var canvasT = Math.ceil((_this.data.cutT / _this.data.cropperH) * IMG_REAL_H)
+    console.log({"real_height":IMG_REAL_H,"real_width":IMG_REAL_W})
+    console.log("canvas",{"W":canvasW,"H":canvasH,"L":canvasL,"T":canvasT})
+    let n=Date.parse(new Date())
+    wx.uploadFile({
+      url: app.globalData.host+"/image",
+      filePath: this.data.imageSrc,
+      name: "image",
+      formData: {
+        "width":canvasW,
+        "height":canvasH,
+        "x":canvasL,
+        "y":canvasT
+      },
+      success: (result) => {
+        console.log("upload file success",result)
+      },
+      fail: (e) => {
+        console.log("upload file error",e)
+      }
+    });
+      
     // 将图片写入画布
-    const ctx = wx.createCanvasContext('myCanvas')
+    /*const ctx = wx.createCanvasContext('myCanvas')
     ctx.drawImage(_this.data.imageSrc, 0, 0, IMG_REAL_W, IMG_REAL_H);
     ctx.draw(true, () => {
       // 获取画布要裁剪的位置和宽度   均为百分比 * 画布中图片的宽度    保证了在微信小程序中裁剪的图片模糊  位置不对的问题
@@ -245,6 +273,10 @@ Page({
       var canvasH = ((_this.data.cropperH - _this.data.cutT - _this.data.cutB) / _this.data.cropperH) * IMG_REAL_H
       var canvasL = (_this.data.cutL / _this.data.cropperW) * IMG_REAL_W
       var canvasT = (_this.data.cutT / _this.data.cropperH) * IMG_REAL_H
+      let d=_this.data
+      console.log("data",d)
+      console.log({"real_height":IMG_REAL_H,"real_width":IMG_REAL_W})
+      console.log("canvas",{"W":canvasW,"H":canvasH,"L":canvasL,"T":canvasT})
       // 生成图片
       wx.canvasToTempFilePath({
         x: canvasL,
@@ -264,7 +296,7 @@ Page({
           })
         }
       })
-    })
+    })*/
   },
 
   /**
