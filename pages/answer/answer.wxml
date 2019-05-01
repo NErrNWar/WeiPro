@@ -1,0 +1,18 @@
+<!--pages/item/item.wxml-->
+<view>
+    <view class="image_view">
+        <image src="{{path}}" class="image_item" mode="widthFix" />
+    </view>
+    <view wx:if="{{answer != ''}}">
+        <view>
+            <text class="answer_tag">答案</text>
+        </view>
+        <view>
+            <text class="answer">{{answer}}</text>
+        </view>
+    </view>
+    <view wx:else class="no_answer">
+        <image src="/images/wu.jpg"/>
+        <text class="">抱歉！没有找到题目</text>
+    </view>
+</view>

@@ -1,0 +1,26 @@
+/* pages/history/history.wxss */
+.history_item{
+    width: 720rpx;
+    height: 310rpx;
+    margin: 20rpx 15rpx;
+    border: 1px solid gray;
+}
+
+.history_item image{
+    width: 720rpx;
+    max-height: 85%;
+    margin: 0px;
+    padding: 0px;
+    display: block;
+}
+
+.history_item text{
+    font-size: 13px;
+    margin: 3rpx 20rpx;
+    color: #5e91fd;
+}
+
+.time_info{
+    display: flex;
+    align-items: center;
+}

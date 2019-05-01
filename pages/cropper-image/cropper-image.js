@@ -237,7 +237,7 @@ Page({
   getImageInfo() {
     var _this = this
     wx.showLoading({
-      title: '图片生成中...',
+      title: '查询中...',
     })
     var canvasW = Math.ceil(((_this.data.cropperW - _this.data.cutL - _this.data.cutR) / _this.data.cropperW) * IMG_REAL_W)
     var canvasH = Math.ceil(((_this.data.cropperH - _this.data.cutT - _this.data.cutB) / _this.data.cropperH) * IMG_REAL_H)
@@ -258,6 +258,7 @@ Page({
       },
       success: (result) => {
         console.log("upload file success",result)
+        wx.hideLoading()
       },
       fail: (e) => {
         console.log("upload file error",e)

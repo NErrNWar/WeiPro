@@ -68,5 +68,17 @@ Page({
           console.log(res)
         }
       }
+    },
+    jumpHistory:()=>{
+      wx.navigateTo({
+        url: '/pages/history/history',
+        success: (result) => {
+          console.log("navigate to history success",result)
+        },
+        fail: (e) => {
+          console.log("navigate to history fail",e)
+        }
+      });
+        
     }
 })

@@ -60,6 +60,6 @@ App({
   globalData: {
     userInfo: null,
     host: "http://localhost:8888",
-    openid:0
+    openid:""
   }
 })

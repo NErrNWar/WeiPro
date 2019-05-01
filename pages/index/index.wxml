@@ -8,7 +8,7 @@
   </view>
   <view class="info_tab">
     <button class="text_info" open-type="share">分享给好友</button>
-    <button class="text_info">搜题历史</button>
+    <button class="text_info" bindtap="jumpHistory">搜题历史</button>
   </view>
   <view  class="bottom_info">
     <text>中小学生拍照搜题利器</text>
