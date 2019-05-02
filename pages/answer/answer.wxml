@@ -12,7 +12,7 @@
         </view>
     </view>
     <view wx:else class="no_answer">
-        <image src="/images/wu.jpg"/>
+        <image src="http://www.52css.top:13333/static/images/wu.jpg"/>
         <text class="">抱歉！没有找到题目</text>
     </view>
 </view>

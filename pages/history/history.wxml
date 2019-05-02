@@ -1,9 +1,9 @@
 <!--pages/history/history.wxml-->
 <view>
-    <view wx:for="{{answers}}" wx:key="id" data-id="{{item.id}}" bindtap="detial" class="history_item">
+    <view wx:for="{{answers}}" wx:key="id" data-id="{{item.id}}" data-path="{{item.path}}" data-answer="{{item.answer}}" bindtap="detial" class="history_item">
         <image src="{{item.path}}" mode="top"/>
         <view class="time_info">
-            <text>{{item.data}}</text>
+            <text>{{item.time}}</text>
         </view>
     </view>
 </view>

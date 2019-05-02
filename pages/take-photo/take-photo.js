@@ -2,7 +2,7 @@
 Page({
     data: {
         flash_flag:"off",
-        flash_path:"http://www.52css.top:8000/images/light_off.png",
+        flash_path:"http://www.52css.top:13333/static/images/light_off.png",
     },
     takePhoto:function(){
         let ctx = wx.createCameraContext(this);
@@ -26,13 +26,13 @@ Page({
         if (this.data.flash_flag=="on"){
             this.setData({
                 flash_flag:"off",
-                flash_path:"http://www.52css.top:8000/images/light_off.png"
+                flash_path:"http://www.52css.top:13333/static/images/light_off.png"
             })
         }
         else{
             this.setData({
                 flash_flag:"on",
-                flash_path:"http://www.52css.top:8000/images/light_on.png"
+                flash_path:"http://www.52css.top:13333/static/images/light_on.png"
             })
         }
     },

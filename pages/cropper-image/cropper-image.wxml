@@ -25,7 +25,7 @@
       </view>
     </view>
     <view class='cropper-config'>
-      <image class="img_info" bindtap="getImageInfo" src="http://www.52css.top:8000/images/yes_fill.png"/>
+      <image class="img_info" bindtap="getImageInfo" src="http://www.52css.top:13333/static/images/yes_fill.png"/>
     </view>
   </view>
   <canvas canvas-id="myCanvas" style="position:absolute;border: 1px solid red; width:{{qualityWidth}}px;height:{{qualityWidth/innerAspectRadio}}px;top:-9999px;left:-9999px;"></canvas>

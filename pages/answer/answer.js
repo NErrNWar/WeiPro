@@ -13,10 +13,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let p=options.url
+    let p=options.path
+    let a=options.answer
     this.setData({
       path:p,
-      //answer:"1+1+1=3"
+      answer:a
     })
   },
 

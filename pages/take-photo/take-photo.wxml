@@ -6,7 +6,7 @@
           
         <cover-view class="bottom_tab">
             <button class="choose_img" bindtap="chooseImg">相册</button>
-            <cover-image bindtap="takePhoto" class="take_btn" src="http://www.52css.top:8000/images/take.png" />
+            <cover-image bindtap="takePhoto" class="take_btn" src="http://www.52css.top:13333/static/images/take.png" />
             <button class="close_photo" bindtap="takeBack">✖</button>
         </cover-view>
     </camera>

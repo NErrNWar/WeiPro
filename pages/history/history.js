@@ -1,49 +1,41 @@
 // pages/history/history.js
+const app= getApp();
+  
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    answers:[
-      {
-        path:"/images/test2.jpg",
-        data:"1+1+2=3",
-        id:1
-      },
-      {
-        path:"/images/test2.jpg",
-        data:"1+1+2=3",
-        id:2
-      },
-      {
-        path:"/images/test2.jpg",
-        data:"1+1+2=3",
-        id:3
-      },
-      {
-        path:"/images/test2.jpg",
-        data:"1+1+2=3",
-        id:4
-      },
-      {
-        path:"/images/test2.jpg",
-        data:"1+1+2=3",
-        id:5
-      },
-      {
-        path:"/images/test2.jpg",
-        data:"1+1+2=3",
-        id:6
-      }
-    ]
+    answers:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let self=this
+    wx.showLoading({
+      title: "加载中...",
+      mask: true,
+    });
+    var reqTask = wx.request({
+      url: app.globalData.host+'/itemlist',
+      data: {"open_id":app.globalData.openid},
+      header: {'content-type':'application/x-www-form-urlencoded'},
+      method: 'POST',
+      success: (result) => {
+        wx.hideLoading();
+        console.log(result)
+        self.setData({
+          answers:result.data.context
+        })
+      },
+      fail: (e) => {
+        console.log("request fail",e)
+      }
+    });
+      
   },
 
   /**
@@ -97,14 +89,16 @@ Page({
 
   detial:(e)=>{
     let id=e.currentTarget.dataset.id
-    // wx.navigateTo({
-    //   url: '/pages/answer/answer',
-    //   success: (result) => {
-    //     console.log("navigate to answer success",result)
-    //   },
-    //   fail: (e) => {
-    //     console.log("navigate to answer fail",e)
-    //   }
-    // }); 
+    let path=e.currentTarget.dataset.path
+    let answer=e.currentTarget.dataset.answer
+    wx.navigateTo({
+      url: '/pages/answer/answer?answer='+answer+'&path='+path,
+      success: (result) => {
+        console.log("navigate to answer success",result)
+      },
+      fail: (e) => {
+        console.log("navigate to answer fail",e)
+      }
+    }); 
   }
 })

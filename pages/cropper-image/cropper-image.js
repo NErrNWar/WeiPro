@@ -254,10 +254,25 @@ Page({
         "width":canvasW,
         "height":canvasH,
         "x":canvasL,
-        "y":canvasT
+        "y":canvasT,
+        "open_id":app.globalData.openid
       },
       success: (result) => {
         console.log("upload file success",result)
+        let d=JSON.parse(result.data)
+        let answer=d.context.answer
+        let path=d.context.path
+        console.log({"answer":answer,"path":path})
+        wx.redirectTo({
+          url: '../answer/answer?path='+path+"&answer="+answer,
+          success: (result) => {
+            console.log("redirect to answer success",result)
+          },
+          fail: (e) => {
+            console.log("redirect to answer fail",e)
+          }
+        });
+          
         wx.hideLoading()
       },
       fail: (e) => {

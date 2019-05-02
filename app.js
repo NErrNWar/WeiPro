@@ -21,7 +21,7 @@ App({
               console.log(data.code,data.message)
             }
             else{
-              let oid=data.context.openid
+              let oid=data.context.open_id
               console.log("openid",oid)
               self.globalData.openid=oid
             }
