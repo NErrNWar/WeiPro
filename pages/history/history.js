@@ -92,8 +92,10 @@ Page({
     let path=e.currentTarget.dataset.path
     let answer=e.currentTarget.dataset.answer
     wx.navigateTo({
-      url: '/pages/answer/answer?answer='+answer+'&path='+path,
+      url: '/pages/answer/answer',
       success: (result) => {
+        app.globalData.n_answer=answer
+        app.globalData.n_path=path
         console.log("navigate to answer success",result)
       },
       fail: (e) => {

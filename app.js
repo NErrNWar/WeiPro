@@ -59,7 +59,9 @@ App({
   },
   globalData: {
     userInfo: null,
-    host: "http://localhost:8888",
-    openid:""
+    host: "https://www.52css.top:12121",
+    openid:"",
+    n_path:"",
+    n_answer:""
   }
 })

@@ -1,9 +1,15 @@
 <!--pages/history/history.wxml-->
 <view>
-    <view wx:for="{{answers}}" wx:key="id" data-id="{{item.id}}" data-path="{{item.path}}" data-answer="{{item.answer}}" bindtap="detial" class="history_item">
-        <image src="{{item.path}}" mode="top"/>
-        <view class="time_info">
-            <text>{{item.time}}</text>
+    <view wx:if="{{answers.length!=0}}">
+        <view wx:for="{{answers}}" wx:key="id" data-id="{{item.id}}" data-path="{{item.path}}" data-answer="{{item.answer}}" bindtap="detial" class="history_item">
+            <image src="{{item.path}}" mode="top"/>
+            <view class="time_info">
+                <text>{{item.time}}</text>
+            </view>
         </view>
+    </view>
+    <view wx:else class="no_item">
+        <image src="http://www.52css.top:13333/static/images/ze.png" />
+        <text>心塞，还没有搜题</text>
     </view>
 </view>

@@ -121,9 +121,9 @@ Page({
           cropperL: Math.ceil((SCREEN_WIDTH - cW) / 2),
           cropperT: 0,
           cutL: Math.ceil(cW * 0.1 / 2),
-          cutT: Math.ceil((cW * IMG_RATIO - cW * 0.5) / 2),
+          cutT: Math.ceil(cW * IMG_RATIO * 0.3),
           cutR: Math.ceil(cW * 0.1 / 2),
-          cutB: Math.ceil((cW * IMG_RATIO - cW * 0.5) / 2),
+          cutB: Math.ceil(cW * IMG_RATIO * 0.3),
           // 图片缩放值
           scaleP: IMG_REAL_W / SCREEN_WIDTH,
           qualityWidth: DRAW_IMAGE_W,
@@ -264,8 +264,10 @@ Page({
         let path=d.context.path
         console.log({"answer":answer,"path":path})
         wx.redirectTo({
-          url: '../answer/answer?path='+path+"&answer="+answer,
+          url: '/pages/answer/answer',
           success: (result) => {
+            app.globalData.n_answer=answer
+            app.globalData.n_path=path
             console.log("redirect to answer success",result)
           },
           fail: (e) => {

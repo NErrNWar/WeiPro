@@ -1,4 +1,7 @@
 // pages/item/item.js
+const app= getApp();
+
+  
 Page({
 
   /**
@@ -13,8 +16,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let p=options.path
-    let a=options.answer
+    let p=app.globalData.n_path
+    let a=app.globalData.n_answer
+    console.log(p,a)
     this.setData({
       path:p,
       answer:a
